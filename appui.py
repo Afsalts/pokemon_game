@@ -57,13 +57,16 @@ if 'game_state' not in st.session_state:
         "winner": None,
     }
 
-def select_pokemon(player):
+def select_pokemon(player_key):
+    player = st.session_state.game_state[player_key]
     st.subheader(f"{player['name']}, select your Pokémon")
-    selected_pokemon = st.selectbox("Choose a Pokémon", ["Squirtle", "Charmander", "Bulbasaur"])
-    if selected_pokemon:
+    selected_pokemon = st.selectbox(f"Choose a Pokémon for {player['name']}", ["Squirtle", "Charmander", "Bulbasaur"], key=f"{player_key}_selectbox")
+    if selected_pokemon and st.button(f"Confirm {player['name']}'s Pokémon selection", key=f"{player_key}_button"):
         player['pokemon'] = selected_pokemon
         player['hp'] = pokemon_data[selected_pokemon]['hp']
         player['attacks'] = pokemon_data[selected_pokemon]['attacks']
+        st.session_state[f"{player_key}_selected"] = True
+        st.experimental_rerun()
 
 def calculate_damage(attacker, defender, attack):
     attack_info = attacker['attacks'][attack]
@@ -71,7 +74,7 @@ def calculate_damage(attacker, defender, attack):
     attack_type = attack_info['type']
     attacker_type = pokemon_data[attacker['pokemon']]['type']
     defender_type = pokemon_data[defender['pokemon']]['type']
-    effectiveness = type_effectiveness.get((attack_type, defender_type), 1) 
+    effectiveness = type_effectiveness.get((attack_type, defender_type), 1)
     damage = base_damage * effectiveness
     return damage, effectiveness
 
@@ -80,7 +83,7 @@ def battle_turn():
     opponent_player = st.session_state.game_state['player1'] if st.session_state.game_state['current_turn'] == 'player2' else st.session_state.game_state['player2']
     
     st.subheader(f"{current_player['name']}'s turn")
-    attack = st.selectbox("Choose an attack", list(current_player['attacks'].keys()))
+    attack = st.selectbox("Choose an attack", list(current_player['attacks'].keys()), key=f"{st.session_state.game_state['current_turn']}_attack")
     
     if st.button("Attack"):
         damage, effectiveness = calculate_damage(current_player, opponent_player, attack)
@@ -117,9 +120,9 @@ def display_hp():
 st.title("Pokémon Battle Game")
 
 if not st.session_state.game_state['player1']['pokemon']:
-    select_pokemon(st.session_state.game_state['player1'])
+    select_pokemon('player1')
 elif not st.session_state.game_state['player2']['pokemon']:
-    select_pokemon(st.session_state.game_state['player2'])
+    select_pokemon('player2')
 else:
     if st.session_state.game_state['winner']:
         st.header(f"{st.session_state.game_state['winner']} wins!")
@@ -127,4 +130,3 @@ else:
         display_hp()
         battle_turn()
     display_battle_log()
-    
