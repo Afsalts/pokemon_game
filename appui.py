@@ -135,7 +135,6 @@ pokemon_data = {
     }
 }
 
-
 type_effectiveness = {
     ("Water", "Fire"): 2,
     ("Fire", "Grass"): 2,
@@ -146,6 +145,15 @@ type_effectiveness = {
     ("Normal", "Rock"): 0.5,
     ("Normal", "Ghost"): 0,
     ("Dark", "Ghost"): 2,
+    ("Electric", "Water"): 2,
+    ("Electric", "Ground"): 0,
+    ("Ground", "Electric"): 2,
+    ("Ice", "Grass"): 2,
+    ("Ice", "Fire"): 0.5,
+    ("Fighting", "Normal"): 2,
+    ("Psychic", "Fighting"): 2,
+    ("Psychic", "Dark"): 0,
+    ("Dark", "Psychic"): 2,
 }
 
 # Initialize game state
@@ -161,7 +169,7 @@ if 'game_state' not in st.session_state:
 def select_pokemon(player_key):
     player = st.session_state.game_state[player_key]
     st.subheader(f"{player['name']}, select your Pokémon")
-    selected_pokemon = st.selectbox(f"Choose a Pokémon for {player['name']}", ["Squirtle", "Charmander", "Bulbasaur"], key=f"{player_key}_selectbox")
+    selected_pokemon = st.selectbox(f"Choose a Pokémon for {player['name']}", list(pokemon_data.keys()), key=f"{player_key}_selectbox")
     if selected_pokemon and st.button(f"Confirm {player['name']}'s Pokémon selection", key=f"{player_key}_button"):
         player['pokemon'] = selected_pokemon
         player['hp'] = pokemon_data[selected_pokemon]['hp']
