@@ -1,7 +1,7 @@
 import streamlit as st
 import random
 
-# Define Pokémon data with attack types
+# Define Pokémon data with attack types and images
 pokemon_data = {
     "Squirtle": {
         "type": "Water",
@@ -11,7 +11,8 @@ pokemon_data = {
             "Water Gun": {"type": "Water", "damage": 15},
             "Bite": {"type": "Dark", "damage": 20},
             "Tail Whip": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/squirtle.jpg"
     },
     "Charmander": {
         "type": "Fire",
@@ -21,7 +22,8 @@ pokemon_data = {
             "Ember": {"type": "Fire", "damage": 15},
             "Flamethrower": {"type": "Fire", "damage": 25},
             "Growl": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/charmander.jpg"
     },
     "Bulbasaur": {
         "type": "Grass",
@@ -31,7 +33,8 @@ pokemon_data = {
             "Vine Whip": {"type": "Grass", "damage": 15},
             "Razor Leaf": {"type": "Grass", "damage": 20},
             "Growl": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/bulbasaur.jpg"
     },
     "Pikachu": {
         "type": "Electric",
@@ -41,7 +44,8 @@ pokemon_data = {
             "Thunder Shock": {"type": "Electric", "damage": 15},
             "Thunderbolt": {"type": "Electric", "damage": 25},
             "Tail Whip": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/pikachu.jpg"
     },
     "Jigglypuff": {
         "type": "Fairy",
@@ -51,7 +55,8 @@ pokemon_data = {
             "Disarming Voice": {"type": "Fairy", "damage": 15},
             "Dazzling Gleam": {"type": "Fairy", "damage": 25},
             "Sing": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/jigglypuff.jpg"
     },
     "Meowth": {
         "type": "Normal",
@@ -61,7 +66,8 @@ pokemon_data = {
             "Bite": {"type": "Dark", "damage": 15},
             "Fury Swipes": {"type": "Normal", "damage": 20},
             "Growl": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/meowth.jpg"
     },
     "Psyduck": {
         "type": "Water",
@@ -71,7 +77,8 @@ pokemon_data = {
             "Water Gun": {"type": "Water", "damage": 15},
             "Confusion": {"type": "Psychic", "damage": 20},
             "Tail Whip": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/psyduck.jpg"
     },
     "Machop": {
         "type": "Fighting",
@@ -81,7 +88,8 @@ pokemon_data = {
             "Karate Chop": {"type": "Fighting", "damage": 15},
             "Seismic Toss": {"type": "Fighting", "damage": 20},
             "Leer": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/machop.jpg"
     },
     "Geodude": {
         "type": "Rock",
@@ -91,7 +99,8 @@ pokemon_data = {
             "Rock Throw": {"type": "Rock", "damage": 15},
             "Magnitude": {"type": "Ground", "damage": 20},
             "Defense Curl": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/geodude.jpg"
     },
     "Eevee": {
         "type": "Normal",
@@ -101,7 +110,8 @@ pokemon_data = {
             "Bite": {"type": "Dark", "damage": 15},
             "Swift": {"type": "Normal", "damage": 20},
             "Growl": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/eevee.jpg"
     },
     "Snorlax": {
         "type": "Normal",
@@ -111,7 +121,8 @@ pokemon_data = {
             "Body Slam": {"type": "Normal", "damage": 20},
             "Hyper Beam": {"type": "Normal", "damage": 30},
             "Rest": {"type": "Psychic", "damage": 0}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/snorlax.jpg"
     },
     "Gengar": {
         "type": "Ghost",
@@ -121,7 +132,8 @@ pokemon_data = {
             "Shadow Ball": {"type": "Ghost", "damage": 25},
             "Dream Eater": {"type": "Psychic", "damage": 30},
             "Confuse Ray": {"type": "Ghost", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/gengar.jpg"
     },
     "Lapras": {
         "type": "Water",
@@ -131,7 +143,8 @@ pokemon_data = {
             "Ice Beam": {"type": "Ice", "damage": 20},
             "Body Slam": {"type": "Normal", "damage": 25},
             "Sing": {"type": "Normal", "damage": 5}
-        }
+        },
+        "image": "https://img.pokemondb.net/artwork/large/lapras.jpg"
     }
 }
 
@@ -226,6 +239,14 @@ def display_hp():
     st.write(f"Ash's {player1['pokemon']} HP: {player1['hp']}")
     st.write(f"Gary's {player2['pokemon']} HP: {player2['hp']}")
 
+def display_pokemon_images():
+    player1 = st.session_state.game_state['player1']
+    player2 = st.session_state.game_state['player2']
+    if player1['pokemon']:
+        st.image(pokemon_data[player1['pokemon']]['image'], caption=f"Ash's {player1['pokemon']}", width=150)
+    if player2['pokemon']:
+        st.image(pokemon_data[player2['pokemon']]['image'], caption=f"Gary's {player2['pokemon']}", width=150)
+
 st.title("Pokémon Battle Game")
 
 if not st.session_state.game_state['player1']['pokemon']:
@@ -236,6 +257,7 @@ else:
     if st.session_state.game_state['winner']:
         st.header(f"{st.session_state.game_state['winner']} wins!")
     else:
+        display_pokemon_images()
         display_hp()
         battle_turn()
     display_battle_log()
