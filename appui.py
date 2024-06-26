@@ -33,7 +33,108 @@ pokemon_data = {
             "Growl": {"type": "Normal", "damage": 5}
         }
     },
+    "Pikachu": {
+        "type": "Electric",
+        "hp": 100,
+        "attacks": {
+            "Quick Attack": {"type": "Normal", "damage": 10},
+            "Thunder Shock": {"type": "Electric", "damage": 15},
+            "Thunderbolt": {"type": "Electric", "damage": 25},
+            "Tail Whip": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Jigglypuff": {
+        "type": "Fairy",
+        "hp": 100,
+        "attacks": {
+            "Pound": {"type": "Normal", "damage": 10},
+            "Disarming Voice": {"type": "Fairy", "damage": 15},
+            "Dazzling Gleam": {"type": "Fairy", "damage": 25},
+            "Sing": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Meowth": {
+        "type": "Normal",
+        "hp": 100,
+        "attacks": {
+            "Scratch": {"type": "Normal", "damage": 10},
+            "Bite": {"type": "Dark", "damage": 15},
+            "Fury Swipes": {"type": "Normal", "damage": 20},
+            "Growl": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Psyduck": {
+        "type": "Water",
+        "hp": 100,
+        "attacks": {
+            "Scratch": {"type": "Normal", "damage": 10},
+            "Water Gun": {"type": "Water", "damage": 15},
+            "Confusion": {"type": "Psychic", "damage": 20},
+            "Tail Whip": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Machop": {
+        "type": "Fighting",
+        "hp": 100,
+        "attacks": {
+            "Low Kick": {"type": "Fighting", "damage": 10},
+            "Karate Chop": {"type": "Fighting", "damage": 15},
+            "Seismic Toss": {"type": "Fighting", "damage": 20},
+            "Leer": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Geodude": {
+        "type": "Rock",
+        "hp": 100,
+        "attacks": {
+            "Tackle": {"type": "Normal", "damage": 10},
+            "Rock Throw": {"type": "Rock", "damage": 15},
+            "Magnitude": {"type": "Ground", "damage": 20},
+            "Defense Curl": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Eevee": {
+        "type": "Normal",
+        "hp": 100,
+        "attacks": {
+            "Quick Attack": {"type": "Normal", "damage": 10},
+            "Bite": {"type": "Dark", "damage": 15},
+            "Swift": {"type": "Normal", "damage": 20},
+            "Growl": {"type": "Normal", "damage": 5}
+        }
+    },
+    "Snorlax": {
+        "type": "Normal",
+        "hp": 100,
+        "attacks": {
+            "Headbutt": {"type": "Normal", "damage": 15},
+            "Body Slam": {"type": "Normal", "damage": 20},
+            "Hyper Beam": {"type": "Normal", "damage": 30},
+            "Rest": {"type": "Psychic", "damage": 0}
+        }
+    },
+    "Gengar": {
+        "type": "Ghost",
+        "hp": 100,
+        "attacks": {
+            "Lick": {"type": "Ghost", "damage": 10},
+            "Shadow Ball": {"type": "Ghost", "damage": 25},
+            "Dream Eater": {"type": "Psychic", "damage": 30},
+            "Confuse Ray": {"type": "Ghost", "damage": 5}
+        }
+    },
+    "Lapras": {
+        "type": "Water",
+        "hp": 100,
+        "attacks": {
+            "Water Gun": {"type": "Water", "damage": 10},
+            "Ice Beam": {"type": "Ice", "damage": 20},
+            "Body Slam": {"type": "Normal", "damage": 25},
+            "Sing": {"type": "Normal", "damage": 5}
+        }
+    }
 }
+
 
 type_effectiveness = {
     ("Water", "Fire"): 2,
